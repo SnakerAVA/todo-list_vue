@@ -24,5 +24,4 @@ export default [
         difficult: 1337,
         isDone: true,
     },
-
 ]

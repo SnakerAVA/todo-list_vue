@@ -11,8 +11,9 @@
 </template>
 
 <script>
-import array from "./index.js";
 import TodoListItem from "./TodoListItem.vue";
+import {getTodoList} from "../../service/todo";
+import Todo from '../../models/Todo';
 export default {
     components: { TodoListItem},
     methods: {
@@ -34,7 +35,9 @@ export default {
 
     },
     created(){
-        this.toDoList = array;
+        this.toDoList = getTodoList();
+        this.toDoList.push(new Todo({difficult: 5, task: 'benis'}))
+        console.log(this.toDoList)
     }
 }
 </script>
