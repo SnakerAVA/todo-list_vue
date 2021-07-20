@@ -2,7 +2,11 @@
 <section>
     <h1>todolist</h1>
     <table>    
-        <TodoListItem v-for="(item, index) in toDoList" :key="index" :task="item.task" :difficult="item.difficult" :isDone="item.isDone" :deleteItem="deleteItem"/>
+        <TodoListItem v-for="(todo, index) in toDoList" 
+        :key="index"
+        :todo="todo"
+        :doneUndone="doneUndone"
+        :deleteItem="deleteItem"/>
     </table>
     
 </section>
@@ -15,22 +19,28 @@ import TodoListItem from "./TodoListItem.vue";
 import {getTodoList} from "../../service/todo";
 import Todo from '../../models/Todo';
 export default {
-    components: { TodoListItem},
-    methods: {
-        deleteItem(task) {
-            let index =  this.toDoList.findIndex((value) => 
-                value.task === task 
-            )
-            this.toDoList.splice(index, 1);
-        }
-    },
-    
-
+    components: {TodoListItem},
     data() {
         return{
             toDoList: []
         }
     },
+    methods: {
+        doneUndone(id) {
+            const todo = this.findTodo(id);
+            todo.isDone = !todo.isDone;
+        },
+        deleteItem(id) {
+            this.toDoList.splice(this.findTodo(id), 1);
+        },
+        findTodo(id) {
+            let todo = this.toDoList.find((value) => 
+                value.id === id 
+            )
+            return todo;
+        }
+    },
+    
     computed: {
 
     },
@@ -43,5 +53,8 @@ export default {
 </script>
 
 <style>
-
+    table {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
 </style>
