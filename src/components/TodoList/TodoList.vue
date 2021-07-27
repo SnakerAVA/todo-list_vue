@@ -1,6 +1,7 @@
 <template>
 <section>
     <h1>todolist</h1>
+    <TodoListForm @createNewTodo="createNewTodo"/>
     <table>    
         <TodoListItem v-for="(todo, index) in toDoList" 
         :key="index"
@@ -18,8 +19,9 @@
 import TodoListItem from "./TodoListItem.vue";
 import {getTodoList} from "../../service/todo";
 import Todo from '../../models/Todo';
+import TodoListForm from './TodoListForm.vue';
 export default {
-    components: {TodoListItem},
+    components: {TodoListItem, TodoListForm},
     data() {
         return{
             toDoList: []
@@ -27,27 +29,30 @@ export default {
     },
     methods: {
         doneUndone(id) {
-            const todo = this.findTodo(id);
+            const todo = this.findTodo(id).todo;
             todo.isDone = !todo.isDone;
         },
         deleteItem(id) {
-            this.toDoList.splice(this.findTodo(id), 1);
+            this.toDoList.splice(this.findTodo(id).todoIndex, 1);
         },
         findTodo(id) {
             let todo = this.toDoList.find((value) => 
                 value.id === id 
             )
-            return todo;
+            let todoIndex = this.toDoList.indexOf(todo);
+            return {
+                todo,
+                todoIndex
+            };
+        },
+        createNewTodo(addedTask) {
+            this.toDoList.push(new Todo(addedTask));
         }
     },
     
-    computed: {
-
-    },
     created(){
         this.toDoList = getTodoList();
-        this.toDoList.push(new Todo({difficult: 5, task: 'benis'}))
-        console.log(this.toDoList)
+        this.toDoList.push(new Todo({difficult: 5, task: 'benis'}));
     }
 }
 </script>
