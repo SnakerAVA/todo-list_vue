@@ -3,7 +3,7 @@
       <td :class="taskClass">{{todo.task}}</td>
       <td :style="difficultStyle">{{todo.difficult}}</td>
       <td><button class="check" :class="{'done-task':todo.isDone}" @click="doneUndone(todo.id)"></button></td>
-      <td><button @click="deleteItem(todo.id)">Delete</button></td>
+      <td><button @click="deleteItem(todo.id)">X</button></td>
   </tr>
 </template>
 
