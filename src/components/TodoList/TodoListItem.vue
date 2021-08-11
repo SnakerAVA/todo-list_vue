@@ -1,9 +1,9 @@
 <template>
   <tr class="todo">
       <td :class="taskClass">{{todo.task}}</td>
-      <td :style="difficultStyle">{{todo.difficult}}</td>
-      <td><button class="check" :class="{'done-task':todo.isDone}" @click="doneUndone(todo.id)"></button></td>
-      <td><button @click="deleteItem(todo.id)">X</button></td>
+      <td class="level" :style="difficultStyle">{{todo.difficult}}</td>
+      <td class="short"><button class="check" :class="{'done-task':todo.isDone}" @click="doneUndone(todo.id)"></button></td>
+      <td class="short"><button @click="deleteItem(todo.id)">X</button></td>
   </tr>
 </template>
 
@@ -26,7 +26,7 @@ export default {
         difficultStyle() {
             return {
                 color: "blue",
-                'background-color': "yellow"
+                'background-color': "rgb(116, 228, 121)"
             }
         }
 
@@ -38,17 +38,27 @@ export default {
 <style scoped>
     .todo {
         display: flex;
-        justify-content: space-between;
         margin: auto;
         border-bottom: 1px solid thistle;
     }
+
     td {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 350px;
+        height: 30px;
+        background-color: rgb(248, 248, 248);
+    }
+    .short {
+        width: 30px;
+    }
+    .level {
         width: 100px;
-        background-color: whitesmoke;
     }
 
     .check {
-        background-color: red;
+        background-color: rgb(160, 160, 160);
         border-radius: 50%;
         border: none;
         width: 20px;
@@ -56,6 +66,7 @@ export default {
     }
 
     .done-task {
-        background-color: green;
+        background-color: rgb(105, 105, 173);
     }
+
 </style>

@@ -6,12 +6,12 @@ export default [
     },
     {
         task: "aboba",
-        difficult: 1488,
+        difficult: 825,
         isDone: false,
     },
     {
         task: "pokakat",
-        difficult: 9999,
+        difficult: 999,
         isDone: false,
     },
     {
@@ -21,7 +21,7 @@ export default [
     },
     {
         task: "suck some dicks",
-        difficult: 1337,
+        difficult: 1000,
         isDone: true,
     },
 ]
