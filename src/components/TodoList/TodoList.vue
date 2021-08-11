@@ -51,6 +51,7 @@ export default {
     },
     
     created(){
+        // todo list в глобальный стор с помощью vuex
         this.toDoList = getTodoList();
         this.toDoList.push(new Todo({difficult: 5, task: 'benis'}));
     }
